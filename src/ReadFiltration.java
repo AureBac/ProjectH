@@ -56,7 +56,7 @@ public class ReadFiltration {
 		//System.out.println(matrix.pivotsFound);
 		
 		
-		//matrix.barCode(F);
+		matrix.barCode(F);
 		
 		t.sparseReduction(F);
 		

@@ -68,6 +68,7 @@ public class BoundaryMatrix {
     				   }
     			   }
     			   if(containsAllVertexes) {
+
     				   sparseMatrix.get(j).add(0,i);
     				   sparseMatrixR.get(j).add(0,i);
     				   
@@ -216,7 +217,7 @@ public class BoundaryMatrix {
     		   // equalitity
     		   else {
     			   i1++;
-    			   toRemove.add(i2);
+    			   //toRemove.add(i2);
     			   i2++;
     		   }
     		   
@@ -247,8 +248,8 @@ public class BoundaryMatrix {
     		   if(L!=null&&L.size()>0) {
     			   sparseMatrixR.set(L.get(0),L);
     		   }
-    		   System.out.println("decimacol");
-    		   System.out.println(sparseMatrixR.get(8));
+    		   //System.out.println("decimacol");
+    		   //System.out.println(sparseMatrixR.get(8));
     		   
     	   }
     	   for(int i=0; i<sparseMatrixR.size();i++) {
