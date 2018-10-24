@@ -47,7 +47,7 @@ public class ReadFiltration {
 		
 		BoundaryMatrix matrix =new BoundaryMatrix(F.size(), F);
 		//System.out.println(new BoundaryMatrix(F.size(), F));
-		//System.out.println(matrix);
+		System.out.println(matrix);
 		//Vector <Integer> Lows=matrix.initialLows();
 		//System.out.println(Lows);
 		

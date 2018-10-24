@@ -197,6 +197,7 @@ public class BoundaryMatrix {
     	   while(i1<size1||i2<size2) {
     		   if(i1>=size1) {
     			   list.add(l2.get(i2));
+    			   //toRemove.add(i2);
     			   i2++;
     		   }
     		   else if(i2>=size2) {
@@ -209,6 +210,7 @@ public class BoundaryMatrix {
     		   }
     		   else if(l2.get(i2)>l1.get(i1)) {
     			   list.add(l2.get(i2));
+    			   //toRemove.add(i2);
     		       i2++;   
     		   }
     		   // equalitity
@@ -231,16 +233,23 @@ public class BoundaryMatrix {
        public void sparseReduction(Vector<Simplex> F) {
     	   for(int j=0; j<F.size();j++) {
     		   LinkedList<Integer> L= (LinkedList<Integer>) sparseMatrix.get(j).clone();
+    		   //System.out.println("sparse");
+    		   //for(LinkedList<Integer> ls: sparseMatrix) {
+    			   //System.out.println(ls);
+    		   //}
     		   sparseMatrixR.set(j,new LinkedList<Integer>());
     		   while((L!=null&&L.size()>0)&&!sparseMatrixR.get(L.get(0)).isEmpty()) {
     			   //if(!sparseMatrixR.get(L.get(0)).isEmpty()) {
-    				   L=merge(L,sparseMatrixR.get(L.get(0)));
+    			      L=merge(L,sparseMatrixR.get(L.get(0)));
     			   //}
     			   
     		   }
     		   if(L!=null&&L.size()>0) {
     			   sparseMatrixR.set(L.get(0),L);
     		   }
+    		   System.out.println("decimacol");
+    		   System.out.println(sparseMatrixR.get(8));
+    		   
     	   }
     	   for(int i=0; i<sparseMatrixR.size();i++) {
     		   if(sparseMatrixR.get(i)!=null&&sparseMatrixR.get(i).size()>0) {
