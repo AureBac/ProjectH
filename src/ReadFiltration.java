@@ -6,7 +6,7 @@ import java.util.TreeSet;
 import java.util.Vector;
 
 
-
+import java.util.Collections;
 
 
 
@@ -32,23 +32,33 @@ public class ReadFiltration {
 			System.exit(0);
 		}
 			
-		System.out.println(readFiltration(args[0]));
+		//System.out.println(readFiltration(args[0]));
 		Vector<Simplex> F=readFiltration(args[0]);
 		int size= F.size();
-		Quicksort sortV= new Quicksort();
-		sortV.sort(F, 0, size-1);
+		//System.out.println(size);
+		//Quicksort sortV= new Quicksort();
+		//sortV.sort(F, 0, size-1);
+		Collections.sort(F, new Compare());
+		
 		System.out.println(F);
+		System.out.println(size);
+		
+		BoundaryMatrix t=new BoundaryMatrix( F);
 		
 		BoundaryMatrix matrix =new BoundaryMatrix(F.size(), F);
 		//System.out.println(new BoundaryMatrix(F.size(), F));
-		System.out.println(matrix);
-		Vector <Integer> Lows=matrix.initialLows();
-		System.out.println(Lows);
+		//System.out.println(matrix);
+		//Vector <Integer> Lows=matrix.initialLows();
+		//System.out.println(Lows);
 		
 		matrix.Reduction();
 		System.out.println(matrix);
-		System.out.println(matrix.pivotsFound);
-		matrix.barCode(F);
+		//System.out.println(matrix.pivotsFound);
+		
+		
+		//matrix.barCode(F);
+		
+		t.sparseReduction(F);
 		
 		//File directory = new File("./");
 		//System.out.println(directory.getAbsolutePath());
