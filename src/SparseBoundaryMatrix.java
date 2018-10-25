@@ -18,6 +18,7 @@ public class SparseBoundaryMatrix {
             sparseMatrixR.add(new LinkedList<Integer>());
         }
         for(int i=0; i<N; i++) {
+
             int dimRow=F.get(i).dim;
             for(int j=i+1; j<N; j++) {
                 int dimColumn=F.get(j).dim;
@@ -82,14 +83,15 @@ public class SparseBoundaryMatrix {
         public LinkedHashMap<Integer, Integer> sparseReduction(Vector<Simplex> F) {
             LinkedHashMap<Integer, Integer> mapBirthDeath=new LinkedHashMap<>();
             for(int j=0; j<F.size();j++) {
+   
+            	
                 LinkedList<Integer> L= (LinkedList<Integer>) sparseMatrix.get(j).clone();
      
                 sparseMatrixR.set(j,new LinkedList<Integer>());
                 while((L!=null&&L.size()>0)&&!sparseMatrixR.get(L.get(0)).isEmpty()) {
                        L=merge(L,sparseMatrixR.get(L.get(0)));
                     
-                }
-                
+                }                
                 
                 
                 if(L!=null&&L.size()>0) {
@@ -101,13 +103,6 @@ public class SparseBoundaryMatrix {
                     }
                     sparseMatrixR.set(L.get(0),L);
                 }
-            }
-            for(int i=0; i<sparseMatrixR.size();i++) {
-                if(sparseMatrixR.get(i)!=null&&sparseMatrixR.get(i).size()>0) {
-                    System.out.println(i);
-                    System.out.println(sparseMatrixR.get(i));
-                }
-             
             }
             
             return mapBirthDeath;
