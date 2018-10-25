@@ -44,20 +44,14 @@ public class ReadFiltration {
 		//System.out.println(F);
 		//System.out.println(size);
 		
-		BoundaryMatrix t=new BoundaryMatrix( F);
 		
+		// Uncomment to use full matrix
 		//BoundaryMatrix matrix =new BoundaryMatrix(F.size(), F);
-		//System.out.println(new BoundaryMatrix(F.size(), F));
-		//System.out.println(matrix);
-		//Vector <Integer> Lows=matrix.initialLows();
-		//System.out.println(Lows);
-		
 		//matrix.Reduction();
-		//System.out.println(matrix);
-		//System.out.println(matrix.pivotsFound);
+		//matrix.barCode(F);
 		
+		BoundaryMatrix t=new BoundaryMatrix(F);
 		
-		matrix.barCode(F);
 		
 		LinkedHashMap<Integer,Integer> map=t.sparseReduction(F);
 		
