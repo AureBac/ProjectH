@@ -28,36 +28,23 @@ public class ReadFiltration {
 	public static void main(String[] args) throws IOException {
 		if (args.length != 1) {
 			System.out.println("Syntax: java ReadFiltration <filename>");
-			//File directory = new File("./");
-			//System.out.println(directory.getAbsolutePath());
+
 			System.exit(0);
 		}
 			
-		//System.out.println(readFiltration(args[0]));
 		Vector<Simplex> F=readFiltration(args[0]);
 		int size= F.size();
-		//System.out.println(size);
-		//Quicksort sortV= new Quicksort();
-		//sortV.sort(F, 0, size-1);
 		Collections.sort(F, new Compare());
-		
-		//System.out.println(F);
-		//System.out.println(size);
 		
 		
 		// Uncomment to use full matrix
 		//BoundaryMatrix matrix =new BoundaryMatrix(F.size(), F);
 		//matrix.Reduction();
 		//matrix.barCode(F);
-		
-		BoundaryMatrix t=new BoundaryMatrix(F);
-		
-		
+
+		String outputName = "./Files/filtration_B_out.txt";
+		SparseBoundaryMatrix t=new SparseBoundaryMatrix(F);
 		LinkedHashMap<Integer,Integer> map=t.sparseReduction(F);
-		
-		new WriteFile("./Files/filtration_B_out.txt").barCode(map,"./Files/filtration_B_out.txt" , F);
-		
-		//File directory = new File("./");
-		//System.out.println(directory.getAbsolutePath());
+		new WriteFile(outputName).barCode(map,"./Files/filtration_B_out.txt" , F);
 	}
 }
