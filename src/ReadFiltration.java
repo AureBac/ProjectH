@@ -37,14 +37,15 @@ public class ReadFiltration {
 		Collections.sort(F, new Compare());
 		
 		
-		// Uncomment to use full matrix
-		//BoundaryMatrix matrix =new BoundaryMatrix(F.size(), F);
-		//matrix.Reduction();
-		//matrix.barCode(F);
+		// Uncomment to use full matrix and comment the sparse matrix ones
+		// BoundaryMatrix matrix =new BoundaryMatrix(F.size(), F);
+		// matrix.Reduction();
+		// matrix.barCode(F);
 
-		String outputName = "./Files/filtration_B_out.txt";
-		SparseBoundaryMatrix t=new SparseBoundaryMatrix(F);
-		LinkedHashMap<Integer,Integer> map=t.sparseReduction(F);
+		// sparse matrix
+		String outputName = "./Files/filtration_C_out.txt";
+		SparseBoundaryMatrix sparseMatrix=new SparseBoundaryMatrix(F);
+		LinkedHashMap<Integer,Integer> map=sparseMatrix.sparseReduction(F);
 		new WriteFile(outputName).barCode(map,"./Files/filtration_B_out.txt" , F);
 	}
 }
