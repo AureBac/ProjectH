@@ -1,6 +1,9 @@
 import java.util.Vector;
 import java.util.LinkedList;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 public class BoundaryMatrix {
        int[][] matrix;
        //Vector<Integer> lowsList=initialLows();
@@ -43,6 +46,7 @@ public class BoundaryMatrix {
     			   }
     			 }  
     		   }
+    		   System.out.println("i= "+i);
     	   }
     	   
        }
@@ -76,12 +80,13 @@ public class BoundaryMatrix {
     			 }  
     		   }
     	      System.out.println("i= "+i);
+    		  
     	   }
-    	   for(int i=0; i<N; i++) {
-    		   if(!sparseMatrix.get(i).isEmpty()) {
-    			   System.out.println(sparseMatrix.get(i));
-    		   }
-    	   }
+    	   //for(int i=0; i<N; i++) {
+    		   //if(!sparseMatrix.get(i).isEmpty()) {
+    			   //System.out.println(sparseMatrix.get(i));
+    		   //}
+    	   //}
     }
        
        public Vector<Integer> initialLows(){
@@ -122,7 +127,12 @@ public class BoundaryMatrix {
     			  } 
     			   boolean remove= pivotsToFind.removeElement( left);
     		   }
+    		   
+    		   System.out.println("j= "+row);
+    		   
     		   row--;
+    		   
+    		   
     	   }
        }
        
@@ -173,6 +183,11 @@ public class BoundaryMatrix {
     				   lines="";
     			   }
     		   }
+    		   
+    		   
+    		   
+    		   System.out.println("k= "+j);
+    		   
     	   }
        }
        
@@ -231,7 +246,8 @@ public class BoundaryMatrix {
        }
        
        
-       public void sparseReduction(Vector<Simplex> F) {
+       public LinkedHashMap<Integer, Integer> sparseReduction(Vector<Simplex> F) {
+    	   LinkedHashMap<Integer, Integer> mapBirthDeath=new LinkedHashMap<>();
     	   for(int j=0; j<F.size();j++) {
     		   LinkedList<Integer> L= (LinkedList<Integer>) sparseMatrix.get(j).clone();
     		   //System.out.println("sparse");
@@ -245,9 +261,19 @@ public class BoundaryMatrix {
     			   //}
     			   
     		   }
+    		   
+    		   
+    		   
     		   if(L!=null&&L.size()>0) {
+    			   if(F.get(j).val>F.get(L.get(0)).val){
+    				   mapBirthDeath.put(L.get(0),j);
+    			   }
+    			   else {
+    				   mapBirthDeath.remove(L.get(0));
+    			   }
     			   sparseMatrixR.set(L.get(0),L);
     		   }
+<<<<<<< HEAD
     		   //System.out.println("decimacol");
     		   //System.out.println(sparseMatrixR.get(8));
     		   
@@ -256,9 +282,27 @@ public class BoundaryMatrix {
     		   if(sparseMatrixR.get(i)!=null&&sparseMatrixR.get(i).size()>0) {
     			   System.out.println(i);
     			   System.out.println(sparseMatrixR.get(i));
+=======
+    		   else {
+    			   mapBirthDeath.put(j,-1);
+>>>>>>> ab39ffa93fe797b3a6ec0354de81d8730df0df45
     		   }
+    		   //System.out.println("decimacol");
+    		   //System.out.println(sparseMatrixR.get(8));
+    		   
+    		   System.out.println("j= "+j);
     		   
     	   }
+    	   
+    	   //System.out.println(mapBirthDeath);
+    	   return mapBirthDeath;
+    	   //for(int i=0; i<sparseMatrixR.size();i++) {
+    		   //if(sparseMatrixR.get(i)!=null&&sparseMatrixR.get(i).size()>0) {
+    			   //System.out.println(i);
+    			   //System.out.println(sparseMatrixR.get(i));
+    		   //}
+    		   
+    	   //}
        }
        
        
